@@ -1,0 +1,14 @@
+# ── Core web framework ────────────────────────────────────────────────────────
+flask==3.0.3
+flask-cors==4.0.1          # Allow cross-origin requests from the frontend
+
+# ── Machine learning ──────────────────────────────────────────────────────────
+scikit-learn==1.5.1        # TF-IDF vectoriser + Logistic Regression
+numpy==1.26.4
+pandas==2.2.2
+
+# ── Model persistence ─────────────────────────────────────────────────────────
+joblib==1.4.2              # Save / load model artefacts (bundled with sklearn)
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+gunicorn==22.0.0           # Production WSGI server (for deployment)
