@@ -1,0 +1,51 @@
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────────────────
+venv/
+env/
+.venv/
+.env/
+
+# ── Environment variables (NEVER commit secrets) ──────────────────────────
+.env
+.env.local
+.env.production
+
+# ── Trained model artefacts (large binary files) ─────────────────────────
+# Uncomment the lines below if you prefer not to commit model files.
+# Committing them is fine for a portfolio project if they are < 50 MB.
+# backend/model/phishing_model.pkl
+# backend/model/vectorizer.pkl
+
+# ── Dataset CSVs (often large; include instructions only) ─────────────────
+backend/sample_data/*.csv
+backend/sample_data/*.tsv
+
+# ── IDE / editor ──────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Jupyter notebooks (checkpoints) ──────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Logs ──────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Docker ────────────────────────────────────────────────────────────────
+.dockerignore
