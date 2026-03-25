@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Phishing Detector</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Favicon: shield emoji as SVG data URI -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🛡️</span>
+        <span class="logo-text">PhishGuard <span class="logo-ai">AI</span></span>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn-icon" title="Toggle light/dark mode" aria-label="Toggle theme">
+          🌙
+        </button>
+        <button id="historyToggle" class="btn-secondary" aria-label="View scan history">
+          📋 History
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Main layout ────────────────────────────────────────────────────── -->
+  <main class="main-layout">
+
+    <!-- ── Scanner panel ────────────────────────────────────────────────── -->
+    <section class="scanner-panel">
+      <h1 class="panel-title">Phishing Detector</h1>
+      <p class="panel-subtitle">
+        Paste an email, suspicious message, or URL below to analyse it for phishing indicators.
+      </p>
+
+      <!-- Input type tabs -->
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-type="text" role="tab" aria-selected="true">📧 Email / Message</button>
+        <button class="tab" data-type="url" role="tab" aria-selected="false">🔗 URL</button>
+      </div>
+
+      <!-- Textarea -->
+      <div class="input-wrapper">
+        <textarea
+          id="inputText"
+          class="text-input"
+          placeholder="Paste your email body, message, or URL here…"
+          rows="8"
+          maxlength="10000"
+          aria-label="Content to analyse"
+        ></textarea>
+        <div class="char-count"><span id="charCount">0</span> / 10,000</div>
+      </div>
+
+      <!-- Actions -->
+      <div class="action-row">
+        <label class="file-upload-label" title="Upload a .txt file">
+          📁 Upload .txt
+          <input type="file" id="fileUpload" accept=".txt" aria-label="Upload text file" />
+        </label>
+        <button id="clearBtn" class="btn-ghost">Clear</button>
+        <button id="analyseBtn" class="btn-primary">
+          <span class="btn-text">Analyse</span>
+          <span class="btn-spinner hidden" aria-hidden="true">⏳</span>
+        </button>
+      </div>
+
+      <!-- Disclaimer -->
+      <p class="disclaimer">
+        ⚠️ For educational and defensive purposes only. Predictions are probabilistic and not always accurate.
+        Never use this tool to craft phishing content.
+      </p>
+    </section>
+
+    <!-- ── Results panel ─────────────────────────────────────────────────── -->
+    <section class="results-panel" id="resultsPanel" aria-live="polite" hidden>
+
+      <!-- Verdict banner -->
+      <div class="verdict-banner" id="verdictBanner">
+        <div class="verdict-icon" id="verdictIcon"></div>
+        <div class="verdict-text">
+          <h2 class="verdict-label" id="verdictLabel">—</h2>
+          <p class="verdict-sub" id="verdictSub"></p>
+        </div>
+      </div>
+
+      <!-- Confidence meter -->
+      <div class="confidence-block">
+        <div class="confidence-header">
+          <span>Confidence Score</span>
+          <span id="confidenceValue" class="confidence-value">—</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Reasons -->
+      <div class="reasons-block" id="reasonsBlock" hidden>
+        <h3 class="block-title">🔍 Why it was flagged</h3>
+        <ul class="reasons-list" id="reasonsList"></ul>
+      </div>
+
+      <!-- URL flags -->
+      <div class="reasons-block" id="urlFlagsBlock" hidden>
+        <h3 class="block-title">🔗 URL Risk Indicators</h3>
+        <ul class="reasons-list" id="urlFlagsList"></ul>
+      </div>
+
+      <!-- Scan info -->
+      <div class="scan-meta">
+        <span id="inputType" class="meta-badge"></span>
+        <span id="scanTime" class="meta-time"></span>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ── History drawer ─────────────────────────────────────────────────── -->
+  <aside class="history-drawer" id="historyDrawer" aria-label="Scan history" hidden>
+    <div class="drawer-header">
+      <h2>Scan History</h2>
+      <div class="drawer-actions">
+        <button id="clearHistoryBtn" class="btn-ghost btn-small">🗑 Clear</button>
+        <button id="closeHistoryBtn" class="btn-icon" aria-label="Close history">✕</button>
+      </div>
+    </div>
+    <div class="history-list" id="historyList">
+      <p class="empty-state">No scans yet.</p>
+    </div>
+  </aside>
+
+  <!-- ── Toast ──────────────────────────────────────────────────────────── -->
+  <div class="toast" id="toast" aria-live="assertive" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
